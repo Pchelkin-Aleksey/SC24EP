@@ -2,17 +2,11 @@ package com.example.controller;
 
 import com.example.entity.Product;
 import com.example.service.ProductService;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Locale;
 import java.util.NoSuchElementException;
 
 @Controller
