@@ -1,4 +1,4 @@
-package com.example.entity;
+package entity;
 
 public record Product(int id, String title, String description ) {
 

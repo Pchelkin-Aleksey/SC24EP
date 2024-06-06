@@ -1,11 +1,15 @@
-package com.example.controller;
+package controller;
 
-import com.example.entity.Product;
-import com.example.service.ProductService;
+
+import entity.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import service.ProductService;
 
 import java.util.NoSuchElementException;
 
@@ -18,11 +22,11 @@ public class ProductController {
 
     private final MessageSource messageSource;
 
-    @ModelAttribute("product")
-    public Product product(@PathVariable("productId") int productId) {
-        return this.productService.findById(productId)
-                .orElseThrow(() -> new NoSuchElementException("catalogue.errors.product.not_found"));
-    }
+//    @ModelAttribute("product")
+//    public Product product(@PathVariable("productId") int productId) {
+//        return this.productService.findById(productId)
+//                .orElseThrow(() -> new NoSuchElementException("catalogue.errors.product.not_found"));
+//    }
 
     @GetMapping
     public String getProduct() {
@@ -34,6 +38,7 @@ public class ProductController {
         return "catalogue/products/edit";
     }
 
+    //---------------------------------------------------------
 //    @PostMapping("edit")
 //    public String updateProduct(@ModelAttribute(name = "product", binding = false) {
 //        this.productService.updateProduct();
