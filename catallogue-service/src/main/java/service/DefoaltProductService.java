@@ -29,9 +29,7 @@ public class DefoaltProductService implements ProductService {
 
     @Override
     public void updateProduct(Integer id, String title, String details) {
-
     }
-
     @Override
     public void deleteProduct(Integer id) {
 
