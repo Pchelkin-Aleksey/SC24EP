@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Locale;
 import java.util.NoSuchElementException;
@@ -48,10 +49,10 @@ public class ProductController {
         try {
             this.productsRestClient.updateProduct(product.id(), payload.title(), payload.details());
             return "redirect:/catalogue/products/%d".formatted(product.id());
-        } catch (BadRequestException exception) {
+        } catch (HttpClientErrorException.BadRequest exception) {
             model.addAttribute("payload", payload);
-            model.addAttribute("errors", exception.getErrors());
-            return "catalogue/products/edit";
+            model.addAttribute("errors", exception);
+            return "/catalogue/products/edit";
         }
     }
 

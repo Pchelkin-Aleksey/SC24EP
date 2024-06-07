@@ -9,6 +9,7 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
 @Controller
 @RequiredArgsConstructor // создает конструктор для final полей??
@@ -34,9 +35,9 @@ public class ProductsController{
         try {
             Product product = this.productsRestClient.createProduct(payload.title(), payload.details());
             return "redirect:/catalogue/products/%d".formatted(product.id());
-        } catch (BadRequestException exception) {
+        } catch (HttpClientErrorException.BadRequest exception) {
             model.addAttribute("payload", payload);
-            model.addAttribute("errors", exception.getErrors());
+            model.addAttribute("errors", exception.getClass());
             return "catalogue/products/new_product";
         }
     }
